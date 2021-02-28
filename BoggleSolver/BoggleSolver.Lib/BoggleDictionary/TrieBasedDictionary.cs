@@ -31,12 +31,7 @@ namespace BoggleSolver.Lib.BoggleDictionary
 
             while (reader.TryGetNextWord(out string nextWord))
             {
-                //Q: where is the responsibility to sanitize input, in the dictionary or the file reader?
-                // building it into the dictionary as it seems it would own the "validness" of words
-                if (!string.IsNullOrWhiteSpace(nextWord) && nextWord.Length >= minimumWordLength)
-                {
-                    InsertWord(nextWord);
-                }
+                InsertWord(nextWord);
             }
         }
 
@@ -44,17 +39,23 @@ namespace BoggleSolver.Lib.BoggleDictionary
         {
             // TODO: A lot of this logic is shared by the InsertWord()
             // will go back to see how to extract out shared logic meaningfully later...
-            char firstLetter = word[0];
+            string sanitizedWord = word?.Trim().ToUpperInvariant();
+            if(string.IsNullOrWhiteSpace(sanitizedWord) || sanitizedWord.Length < _minimumWordLength)
+            {
+                return false; 
+            }
+
+            char firstLetter = sanitizedWord[0];
             if (_firstLetterTrieMapping.ContainsKey(firstLetter))
             {
                 var currentTrieNode = _firstLetterTrieMapping[firstLetter];
                 bool matchFound = false;
 
                 int currentPositionInWord = 1;
-                for (; currentPositionInWord < word.Length; currentPositionInWord++)
+                for (; currentPositionInWord < sanitizedWord.Length; currentPositionInWord++)
                 {
                     matchFound = false;
-                    var currentLetter = word[currentPositionInWord];
+                    var currentLetter = sanitizedWord[currentPositionInWord];
 
 
                     for (int continuationIndex = 0; continuationIndex < currentTrieNode.Continuations.Count; continuationIndex++)
@@ -96,7 +97,16 @@ namespace BoggleSolver.Lib.BoggleDictionary
 
         private void InsertWord(string word)
         {
-            char firstLetter = word[0];
+            //Q: where is the responsibility to sanitize input, in the dictionary or the file reader?
+            // building it into the dictionary as it seems it would own the "validness" of words
+            // (It should be noted that this is creating extra allocations as C# strings are immutable)
+            string sanitizedWord = word.Trim().ToUpperInvariant();
+            if (string.IsNullOrWhiteSpace(sanitizedWord) || sanitizedWord.Length < _minimumWordLength)
+            {
+                return;
+            }
+
+            char firstLetter = sanitizedWord[0];
 
             if (_firstLetterTrieMapping.ContainsKey(firstLetter))
             {
@@ -104,9 +114,9 @@ namespace BoggleSolver.Lib.BoggleDictionary
 
                 //find where we need to extend the trie
                 int currentPositionInWord = 1;
-                for (; currentPositionInWord < word.Length; currentPositionInWord++)
+                for (; currentPositionInWord < sanitizedWord.Length; currentPositionInWord++)
                 {
-                    var currentLetter = word[currentPositionInWord];
+                    var currentLetter = sanitizedWord[currentPositionInWord];
 
                     bool matchFound = false;
                     for (int continuationIndex = 0; continuationIndex < currentTrieNode.Continuations.Count; continuationIndex++)
@@ -124,17 +134,17 @@ namespace BoggleSolver.Lib.BoggleDictionary
                 }
 
                 //We have matched as many letters as we can, so now we need to add the next set of letters
-                FinishWordFromRoot(currentTrieNode, word, currentPositionInWord);
+                FinishWordFromRoot(currentTrieNode, sanitizedWord, currentPositionInWord);
             }
             else //we are adding a brand new node
             {
                 //A minor edge case where the root is also the complete word (unlikely in boggle, but maybe in some other system?)
-                bool isASingleLetterWord = _minimumWordLength == 1 && word.Length == 1;
+                bool isASingleLetterWord = _minimumWordLength == 1 && sanitizedWord.Length == 1;
 
                 var root = new TrieNode(firstLetter, isASingleLetterWord);
                 _firstLetterTrieMapping.Add(root.Letter, root);
 
-                FinishWordFromRoot(root, word, 1); //plus 1 because we already set the root and are extending from there
+                FinishWordFromRoot(root, sanitizedWord, 1); //plus 1 because we already set the root and are extending from there
             }
         }
 

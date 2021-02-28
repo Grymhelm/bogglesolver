@@ -19,7 +19,11 @@ namespace BoggleSolver.UnitTests
 
             Assert.AreEqual(simpleTestDictionary.WordCount, fullWordList.Count, "Wrong number of words in the dictionary constructed");
 
-            CollectionAssert.AreEquivalent((System.Collections.ICollection)simpleTestDictionary.WordList, (System.Collections.ICollection)fullWordList);
+            foreach (var word in simpleTestDictionary.WordList)
+            {
+                //We have to capitalize the values in the reader because it doesn't sanitize input (see interface notes)
+                CollectionAssert.Contains((System.Collections.ICollection)fullWordList, word.ToUpperInvariant());
+            }
         }
 
         [TestMethod]
@@ -64,8 +68,13 @@ namespace BoggleSolver.UnitTests
             var fullWordList = boggleDictionary.GetFullWordList();
 
             Assert.AreEqual(2, fullWordList.Count, "Wrong number of words in the dictionary constructed");
-            CollectionAssert.Contains((System.Collections.ICollection)fullWordList, "dog");
-            CollectionAssert.Contains((System.Collections.ICollection)fullWordList, "doggy");
+
+            //also make sure the correct words got added
+            foreach (var word in simpleTestDictionary.WordList)
+            {
+                //We have to capitalize the values in the reader because it doesn't sanitize input (see interface notes)
+                CollectionAssert.Contains((System.Collections.ICollection)fullWordList, word.ToUpperInvariant());
+            }
         }
     }
 }
