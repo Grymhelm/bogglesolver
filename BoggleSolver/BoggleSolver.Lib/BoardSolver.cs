@@ -6,9 +6,9 @@ namespace BoggleSolver.Lib
 {
     public static class BoardSolver
     {
-        public static List<string> TestAllCombinations(char[][] board, IBoggleDictionary validAnswers)
+        public static IEnumerable<string> TestAllCombinations(char[][] board, IBoggleDictionary validAnswers)
         {
-            List<string> wordsFound = new List<string>();
+            SortedSet<string> wordsFound = new SortedSet<string>();
 
             //we require at least a 1 x 1 board to test
             if (board.Length > 0 && board[0].Length > 0)
@@ -20,7 +20,13 @@ namespace BoggleSolver.Lib
                     visited[index] = new bool[board[0].Length];
                 }
 
-                CheckBoardRecursive(wordsFound, validAnswers, board, visited, 0, 0, new StringBuilder());
+                for (int row = 0; row < board.Length; row++)
+                {
+                    for (int col = 0; col < board[0].Length; col++)
+                    {
+                        CheckBoardRecursive(wordsFound, validAnswers, board, visited, row, col, new StringBuilder());
+                    }
+                }                
             }
 
             return wordsFound;
@@ -28,7 +34,7 @@ namespace BoggleSolver.Lib
 
         // A recursive function to print all words present on boggle 
         private static void CheckBoardRecursive(
-            List<string> wordList,
+            SortedSet<string> wordList,
             IBoggleDictionary dictionary,
             char[][] board,
             bool[][] visited,
@@ -48,9 +54,16 @@ namespace BoggleSolver.Lib
 
             // Traverse neighbors
             for (int row = i - 1; row <= i + 1 && row < board.Length; row++)
+            {
                 for (int col = j - 1; col <= j + 1 && col < board[0].Length; col++)
+                {
                     if (row >= 0 && col >= 0 && !visited[row][col])
+                    {
                         CheckBoardRecursive(wordList, dictionary, board, visited, row, col, currentString);
+                    }
+                }
+                
+            }
 
             //Remove the character we just visited; could alternatively use a cached builder, but this allows us to reuse the same buffer
             currentString.Remove(currentString.Length - 1, 1);
