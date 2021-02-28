@@ -1,6 +1,4 @@
 ﻿using BoggleSolver.Lib;
-using BoggleSolver.Lib.BoggleDictionary;
-using BoggleSolver.Lib.DictionaryReader;
 using BoggleSolver.UnitTests.TestClasses;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
