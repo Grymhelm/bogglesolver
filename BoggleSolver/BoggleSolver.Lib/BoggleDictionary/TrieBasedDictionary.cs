@@ -80,7 +80,7 @@ namespace BoggleSolver.Lib.BoggleDictionary
             return false;
         }
 
-        public IList<string> GetFullWordList()
+        public IReadOnlyList<string> GetFullWordList()
         {
             List<string> fullWordList = new List<string>();
             //Traverse the trie to construct the list
@@ -160,7 +160,8 @@ namespace BoggleSolver.Lib.BoggleDictionary
 
             foreach (TrieNode child in node.Continuations)
             {
-                AddAllWordsFromNode(child, currentWordPart, listToModify);
+                StringBuilder newWordPart = new System.Text.StringBuilder(currentWordPart.ToString());
+                AddAllWordsFromNode(child, newWordPart, listToModify);
             }
         }
     }

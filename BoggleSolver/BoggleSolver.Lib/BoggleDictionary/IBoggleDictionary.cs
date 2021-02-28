@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace BoggleSolver.Lib.BoggleDictionary
 {
     public interface IBoggleDictionary
     {
-        IList<string> GetFullWordList();
+        IReadOnlyList<string> GetFullWordList();
         bool IsWord(string word);
     }
 }
