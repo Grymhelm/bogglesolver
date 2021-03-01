@@ -4,6 +4,9 @@ using System.Text;
 
 namespace BoggleSolver.Lib.DictionaryReader
 {
+    /// <summary>
+    /// The simplest form of a dictionary file representation: a string or a text file with some character separating each value
+    /// </summary>
     public class CharacterDelimitedStringReader : IDictionaryReader
     {
         private List<string> _words;

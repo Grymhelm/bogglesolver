@@ -35,6 +35,10 @@ namespace BoggleSolver.Lib
         }
     }
 
+    /// <summary>
+    /// Currently, many members of this class are internal; they could be made public, but this is currently built as a "library" of functionality
+    /// where most content should be opaque to calling clients...  (This class would still potentially be useful in the case members were public, of course.)
+    /// </summary>
     public static class BoggleGameFactory
     {
         public static BoggleGame CreateBoggleGame(IDictionaryReader dictionaryReader, GameConfiguration gameConfiguration)

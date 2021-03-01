@@ -4,6 +4,10 @@ using System.Text;
 
 namespace BoggleSolver.Lib
 {
+    /// <summary>
+    /// This class uses recursion to check through all the possible combinations of the board
+    /// It is not currently heavily optimized, but it is worth noting each starting node could be checked in a separate thread
+    /// </summary>
     public static class BoardSolver
     {
         public static IEnumerable<string> TestAllCombinations(char[][] board, IBoggleDictionary validAnswers)
