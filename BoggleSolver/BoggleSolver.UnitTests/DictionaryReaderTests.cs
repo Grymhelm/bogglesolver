@@ -24,7 +24,7 @@ namespace BoggleSolver.UnitTests
         [TestMethod]
         public void CharacterDelimitedReader_RawString()
         {
-            List<string> testWords = new List<string> { "word1", "word2", "word3", "word4","\t\t\t", " ", "" };
+            List<string> testWords = new List<string> { "word1", "word2", "word3", "word4" };
             char delimiter = ',';
 
             CharacterDelimitedStringReader reader = new CharacterDelimitedStringReader(delimiter, string.Join(delimiter,testWords));

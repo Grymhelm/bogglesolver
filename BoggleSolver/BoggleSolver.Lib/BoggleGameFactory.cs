@@ -35,9 +35,9 @@ namespace BoggleSolver.Lib
         }
     }
 
-    public class BoggleGameFactory
+    public static class BoggleGameFactory
     {
-        public BoggleGame CreateBoggleGame(IDictionaryReader dictionaryReader, GameConfiguration gameConfiguration)
+        public static BoggleGame CreateBoggleGame(IDictionaryReader dictionaryReader, GameConfiguration gameConfiguration)
         {
             if(gameConfiguration.MinimumWordLength <= 0)
             {
@@ -50,7 +50,7 @@ namespace BoggleSolver.Lib
             return CreateCustomBoggleGame(boggleDictionary, scorer);
         }
 
-        public BoggleGame CreateBoggleGameWithCustomDictionary(IBoggleDictionary customDictionary, ScorerType scorerType = ScorerType.Simple)
+        public static BoggleGame CreateBoggleGameWithCustomDictionary(IBoggleDictionary customDictionary, ScorerType scorerType = ScorerType.Simple)
         {
             if (customDictionary == null)
             {
@@ -62,13 +62,13 @@ namespace BoggleSolver.Lib
             return CreateCustomBoggleGame(customDictionary, scorer);
         }
 
-        public BoggleGame CreateCustomBoggleGame(IBoggleDictionary customDictionary, IBoggleScorer customScorer)
+        public static BoggleGame CreateCustomBoggleGame(IBoggleDictionary customDictionary, IBoggleScorer customScorer)
         {
             return new BoggleGame(customDictionary, customScorer);
         }
 
 
-        private IBoggleDictionary BuildDictionary(IDictionaryReader dictionaryReader, DictionaryType dictionaryType, int minimumWordLength)
+        private static IBoggleDictionary BuildDictionary(IDictionaryReader dictionaryReader, DictionaryType dictionaryType, int minimumWordLength)
         {
             switch (dictionaryType)
             {
@@ -78,7 +78,7 @@ namespace BoggleSolver.Lib
             }
         }
 
-        private IBoggleScorer BuildScorer(IBoggleDictionary boggleDictionary, ScorerType scorerType)
+        private static IBoggleScorer BuildScorer(IBoggleDictionary boggleDictionary, ScorerType scorerType)
         {
             switch (scorerType)
             {

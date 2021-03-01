@@ -28,10 +28,17 @@ namespace BoggleSolver.Lib.DictionaryReader
             {
                 StringBuilder contents = new StringBuilder(string.Empty);
 
-                while(!reader.EndOfStream)
+                if(_delimiter != '\n' && _delimiter != '\r') //if it's not a new line delimiter
                 {
-                    //reading individual lines to prevent odd behaviors around line feeds being included in words
-                    contents.Append(reader.ReadLine());
+                    while (!reader.EndOfStream)
+                    {
+                        //reading individual lines to prevent odd behaviors around line feeds being included in words
+                        contents.Append(reader.ReadLine());
+                    }
+                }
+                else //we can just read the whole file in at once
+                {
+                    contents = contents.Append(reader.ReadToEnd());
                 }
 
                 SplitAndAddWordsToListFromString(contents.ToString());
@@ -67,8 +74,8 @@ namespace BoggleSolver.Lib.DictionaryReader
 
             foreach (var word in wordsFound)
             {
-                //We are not sanitizing here; functionally, this assumes however you have broken up your contents is "correct"
-                _words.Add(word);
+                //We are not sanitizing much here; functionally, this assumes however you have broken up your contents is "correct"
+                _words.Add(word.Trim());
             }
         }
     }
