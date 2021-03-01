@@ -31,8 +31,8 @@ namespace BoggleSolver.UnitTests
         {
             var simpleTestDictionary = new SimpleTestDictionary();
             IBoggleDictionary boggleDictionary = new TrieBasedBoggleDictionary(simpleTestDictionary);
-            
-            foreach(var word in simpleTestDictionary.WordList)
+
+            foreach (var word in simpleTestDictionary.WordList)
             {
                 Assert.IsTrue(boggleDictionary.IsWord(word), $"The word {word} came back as not a word.");
             }
@@ -61,8 +61,8 @@ namespace BoggleSolver.UnitTests
         [TestMethod]
         public void TrieDictionary_DuplicateWords_AreIgnored()
         {
-            var simpleTestDictionary = new SimpleTestDictionary(new List<string> {"dog", "dog", "doggy" });
-            
+            var simpleTestDictionary = new SimpleTestDictionary(new List<string> { "dog", "dog", "doggy" });
+
             IBoggleDictionary boggleDictionary = new TrieBasedBoggleDictionary(simpleTestDictionary);
 
             var fullWordList = boggleDictionary.GetFullWordList();

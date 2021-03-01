@@ -43,7 +43,7 @@ namespace BoggleSolver.Lib
     {
         public static BoggleGame CreateBoggleGame(IDictionaryReader dictionaryReader, GameConfiguration gameConfiguration)
         {
-            if(gameConfiguration.MinimumWordLength <= 0)
+            if (gameConfiguration.MinimumWordLength <= 0)
             {
                 throw new System.InvalidOperationException($"Minimum word length of {gameConfiguration.MinimumWordLength} is not supported; please choose a positive, non-zero value.");
             }

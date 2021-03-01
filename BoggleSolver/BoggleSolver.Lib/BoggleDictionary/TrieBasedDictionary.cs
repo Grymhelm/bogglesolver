@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using BoggleSolver.Lib.DictionaryReader;
+using System.Collections.Generic;
 using System.Text;
-using BoggleSolver.Lib.DictionaryReader;
 
 namespace BoggleSolver.Lib.BoggleDictionary
 {
@@ -40,9 +40,9 @@ namespace BoggleSolver.Lib.BoggleDictionary
             // TODO: A lot of this logic is shared by the InsertWord()
             // will go back to see how to extract out shared logic meaningfully later...
             string sanitizedWord = word?.Trim().ToUpperInvariant();
-            if(string.IsNullOrWhiteSpace(sanitizedWord) || sanitizedWord.Length < _minimumWordLength)
+            if (string.IsNullOrWhiteSpace(sanitizedWord) || sanitizedWord.Length < _minimumWordLength)
             {
-                return false; 
+                return false;
             }
 
             char firstLetter = sanitizedWord[0];

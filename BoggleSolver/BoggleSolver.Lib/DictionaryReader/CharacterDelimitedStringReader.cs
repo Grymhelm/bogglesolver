@@ -22,16 +22,16 @@ namespace BoggleSolver.Lib.DictionaryReader
 
         public bool TryReadFromTextFile(string filePath)
         {
-            if(!File.Exists(filePath))
+            if (!File.Exists(filePath))
             {
                 return false;
             }
 
-            using(StreamReader reader = new StreamReader(filePath))
+            using (StreamReader reader = new StreamReader(filePath))
             {
                 StringBuilder contents = new StringBuilder(string.Empty);
 
-                if(_delimiter != '\n' && _delimiter != '\r') //if it's not a new line delimiter
+                if (_delimiter != '\n' && _delimiter != '\r') //if it's not a new line delimiter
                 {
                     while (!reader.EndOfStream)
                     {
@@ -53,7 +53,7 @@ namespace BoggleSolver.Lib.DictionaryReader
 
         public bool TryGetNextWord(out string nextWord)
         {
-            if(_words == null || _words.Count <= 0 || _currentPosition >= _words.Count)
+            if (_words == null || _words.Count <= 0 || _currentPosition >= _words.Count)
             {
                 nextWord = null;
                 return false;
@@ -67,7 +67,7 @@ namespace BoggleSolver.Lib.DictionaryReader
 
         private void SplitAndAddWordsToListFromString(string contents)
         {
-            if(string.IsNullOrEmpty(contents) || _delimiter == '\0')
+            if (string.IsNullOrEmpty(contents) || _delimiter == '\0')
             {
                 return;
             }

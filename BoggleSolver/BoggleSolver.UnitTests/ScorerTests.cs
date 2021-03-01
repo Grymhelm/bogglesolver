@@ -1,9 +1,7 @@
 ﻿using BoggleSolver.Lib.BoggleScorer;
 using BoggleSolver.UnitTests.TestClasses;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BoggleSolver.UnitTests
 {
@@ -15,8 +13,8 @@ namespace BoggleSolver.UnitTests
         {
             var mockDictionary = new MockBoggleDictionary(new List<string> { "a", "ab", "abc", "abcd" });
             var scorer = new SimpleScorer(mockDictionary);
-            
-            foreach(var word in mockDictionary.GetFullWordList())
+
+            foreach (var word in mockDictionary.GetFullWordList())
             {
                 Assert.AreEqual(word.Length, scorer.ScoreWord(word));
             }
@@ -48,7 +46,7 @@ namespace BoggleSolver.UnitTests
             var allScoringWords = scorer.ScoreWordList(new List<string> { "a", "ab", "abc", "abcd", "dddd", "aaaa" });
 
             int actualScore = 0;
-            foreach(var scoringWord in allScoringWords)
+            foreach (var scoringWord in allScoringWords)
             {
                 Assert.AreEqual(scoringWord.Word.Length, scoringWord.Points);
                 actualScore += scoringWord.Points;

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace BoggleSolver.Lib.DictionaryReader
+﻿namespace BoggleSolver.Lib.DictionaryReader
 {
     /// <summary>
     /// A reader is a fairly simple class which reports one word at a time from whatever source it uses

@@ -23,7 +23,7 @@ namespace BoggleSolver.UnitTests
 
             var answers = BoardSolver.TestAllCombinations(board, mockDictionary);
 
-            CollectionAssert.AreEquivalent((System.Collections.ICollection)answers, (System.Collections.ICollection) mockDictionary.GetFullWordList());
+            CollectionAssert.AreEquivalent((System.Collections.ICollection)answers, (System.Collections.ICollection)mockDictionary.GetFullWordList());
         }
 
         [TestMethod]
@@ -53,7 +53,7 @@ namespace BoggleSolver.UnitTests
 
             char[][] board = new char[][] { row1, row2, row3 };
 
-            var mockDictionary = new MockBoggleDictionary(new List<string> { "cat"});
+            var mockDictionary = new MockBoggleDictionary(new List<string> { "cat" });
 
             var answers = BoardSolver.TestAllCombinations(board, mockDictionary);
 

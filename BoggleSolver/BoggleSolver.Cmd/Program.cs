@@ -94,7 +94,7 @@ namespace BoggleSolver.Cmd
             Console.WriteLine(" ---- CORRECT ANSWERS ----");
 
             int totalScore = 0;
-            foreach(var scoringWord in scoringWords)
+            foreach (var scoringWord in scoringWords)
             {
                 Console.WriteLine($" + {scoringWord.Points} pts | {scoringWord.Word}");
                 totalScore += scoringWord.Points;
@@ -107,7 +107,7 @@ namespace BoggleSolver.Cmd
 
             var allAnswers = boggleGame.BoggleScorer.GetAllAnswers(gameBoard);
 
-            foreach(var answer in allAnswers)
+            foreach (var answer in allAnswers)
             {
                 Console.Write($"  {answer.Word}  ");
             }

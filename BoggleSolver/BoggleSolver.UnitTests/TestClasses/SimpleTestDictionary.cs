@@ -20,7 +20,7 @@ namespace BoggleSolver.UnitTests.TestClasses
             // copying so we don't modify the original collection, in case it is relevant
             foreach (var word in wordList)
             {
-                _simpleDictionary.Add(word); 
+                _simpleDictionary.Add(word);
             }
         }
 

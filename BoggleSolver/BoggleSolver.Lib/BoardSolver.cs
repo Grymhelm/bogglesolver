@@ -30,7 +30,7 @@ namespace BoggleSolver.Lib
                     {
                         CheckBoardRecursive(wordsFound, validAnswers, board, visited, row, col, new StringBuilder());
                     }
-                }                
+                }
             }
 
             return wordsFound;
@@ -43,7 +43,7 @@ namespace BoggleSolver.Lib
             char[][] board,
             bool[][] visited,
             int i,
-            int j, 
+            int j,
             StringBuilder currentString)
         {
             // We have been to this cell, so mark it and append
@@ -66,7 +66,7 @@ namespace BoggleSolver.Lib
                         CheckBoardRecursive(wordList, dictionary, board, visited, row, col, currentString);
                     }
                 }
-                
+
             }
 
             //Remove the character we just visited; could alternatively use a cached builder, but this allows us to reuse the same buffer

@@ -1,9 +1,7 @@
 ﻿using BoggleSolver.Lib.DictionaryReader;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace BoggleSolver.UnitTests
 {
@@ -27,10 +25,10 @@ namespace BoggleSolver.UnitTests
             List<string> testWords = new List<string> { "word1", "word2", "word3", "word4" };
             char delimiter = ',';
 
-            CharacterDelimitedStringReader reader = new CharacterDelimitedStringReader(delimiter, string.Join(delimiter,testWords));
+            CharacterDelimitedStringReader reader = new CharacterDelimitedStringReader(delimiter, string.Join(delimiter, testWords));
 
             //order should match input
-            foreach(var word in testWords)
+            foreach (var word in testWords)
             {
                 Assert.IsTrue(reader.TryGetNextWord(out string nextWord));
                 Assert.AreEqual(word, nextWord);
@@ -49,7 +47,7 @@ namespace BoggleSolver.UnitTests
                 File.Delete(textFileName);
             }
 
-            using(StreamWriter writer = new StreamWriter(textFileName))
+            using (StreamWriter writer = new StreamWriter(textFileName))
             {
                 writer.Write(word);
             }
