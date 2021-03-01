@@ -36,7 +36,7 @@ namespace BoggleSolver.Lib
             return wordsFound;
         }
 
-        // A recursive function to print all words present on boggle 
+        // A recursive function to check for all words in boggle board
         private static void CheckBoardRecursive(
             SortedSet<string> wordList,
             IBoggleDictionary dictionary,
