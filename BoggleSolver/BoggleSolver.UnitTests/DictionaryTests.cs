@@ -76,5 +76,15 @@ namespace BoggleSolver.UnitTests
                 CollectionAssert.Contains((System.Collections.ICollection)fullWordList, word.ToUpperInvariant());
             }
         }
+
+        [TestMethod]
+        public void TrieDictionary_IsWord_PartialMatch_ReturnsFalse()
+        {
+            var simpleTestDictionary = new SimpleTestDictionary(new List<string> { "ThisIsPartialMatch" });
+            var minimumWordLength = 4;
+            IBoggleDictionary boggleDictionary = new TrieBasedBoggleDictionary(simpleTestDictionary, minimumWordLength);
+
+            Assert.IsFalse(boggleDictionary.IsWord("ThisIsPartialMatchButNotAFullMatch"));
+        }
     }
 }
