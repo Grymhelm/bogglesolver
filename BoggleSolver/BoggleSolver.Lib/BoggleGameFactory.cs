@@ -14,6 +14,7 @@ namespace BoggleSolver.Lib
     {
         Invalid,
         Simple,
+        Standard
     }
 
     public struct GameConfiguration
@@ -87,6 +88,8 @@ namespace BoggleSolver.Lib
             switch (scorerType)
             {
                 default:
+                case ScorerType.Standard:
+                    return new StandardScorer(boggleDictionary);
                 case ScorerType.Simple:
                     return new SimpleScorer(boggleDictionary);
             }
