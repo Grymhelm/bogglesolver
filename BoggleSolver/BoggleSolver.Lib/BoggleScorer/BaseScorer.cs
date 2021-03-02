@@ -13,7 +13,7 @@ namespace BoggleSolver.Lib.BoggleScorer
             _boggleDictionary = boggleDictionary;
         }
 
-        public IEnumerable<ScoringWord> GetAllAnswers(char[][] gameboard)
+        public IReadOnlyList<ScoringWord> GetAllAnswers(char[][] gameboard)
         {
             var answers = BoardSolver.TestAllCombinations(gameboard, _boggleDictionary);
 
@@ -22,7 +22,7 @@ namespace BoggleSolver.Lib.BoggleScorer
 
         public abstract int ScoreWord(string word);
 
-        public virtual IEnumerable<ScoringWord> ScoreWordList(IEnumerable<string> wordList)
+        public virtual IReadOnlyList<ScoringWord> ScoreWordList(IEnumerable<string> wordList)
         {
             List<ScoringWord> scoredWords = new List<ScoringWord>();
 

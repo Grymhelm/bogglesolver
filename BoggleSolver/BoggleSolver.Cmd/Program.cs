@@ -102,14 +102,19 @@ namespace BoggleSolver.Cmd
             Console.WriteLine($" = TOTAL POINTS: {totalScore}");
 
 
-            Console.WriteLine("\n\n PRESS ENTER TO SEE ALL POSSIBLE ANSWERS!! ");
+            Console.Write("\n\n PRESS ENTER TO SEE ALL POSSIBLE ANSWERS!! ");
             Console.ReadLine();
 
             var allAnswers = boggleGame.BoggleScorer.GetAllAnswers(gameBoard);
 
-            foreach (var answer in allAnswers)
+            int answersPerLine = 5;
+            for(int answerIndex = 0; answerIndex < allAnswers.Count; answerIndex++)
             {
-                Console.Write($"  {answer.Word}  ");
+                if(answerIndex % answersPerLine == 0)
+                {
+                    Console.Write(Environment.NewLine + "  ");
+                }
+                Console.Write($"{allAnswers[answerIndex].Word}\t");
             }
 
             System.Console.WriteLine("\n\n Press ENTER to quit... ");

@@ -30,14 +30,14 @@ namespace BoggleSolver.Lib.BoggleScorer
         /// Scores a full collection of words
         /// </summary>
         /// <param name="wordList">any enumerable collection of strings to score</param>
-        /// <returns>A named structure of word and its value</returns>
-        IEnumerable<ScoringWord> ScoreWordList(IEnumerable<string> wordList);
+        /// <returns>A named structure of word and its value in a read only list</returns>
+        IReadOnlyList<ScoringWord> ScoreWordList(IEnumerable<string> wordList);
 
         /// <summary>
         /// Provides the caller with all possible answers according to the scorer logic
         /// </summary>
         /// <param name="gameboard">A multidimensional array representing the game board</param>
-        /// <returns>A collection of all possible scoring words and their value</returns>
-        IEnumerable<ScoringWord> GetAllAnswers(char[][] gameboard);
+        /// <returns>A collection of all possible scoring words and their value a read only list</returns>
+        IReadOnlyList<ScoringWord> GetAllAnswers(char[][] gameboard);
     }
 }
