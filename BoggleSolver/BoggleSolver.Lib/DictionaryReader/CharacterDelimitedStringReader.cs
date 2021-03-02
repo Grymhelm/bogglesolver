@@ -17,7 +17,7 @@ namespace BoggleSolver.Lib.DictionaryReader
         {
             _delimiter = delimiter;
 
-            SplitAndAddWordsToListFromString(rawContentsString);
+            InitializeWordListUsingDelimiter(rawContentsString);
         }
 
         public bool TryReadFromTextFile(string filePath)
@@ -44,7 +44,7 @@ namespace BoggleSolver.Lib.DictionaryReader
                     contents = contents.Append(reader.ReadToEnd());
                 }
 
-                SplitAndAddWordsToListFromString(contents.ToString());
+                InitializeWordListUsingDelimiter(contents.ToString());
             }
 
             return true;
@@ -65,7 +65,7 @@ namespace BoggleSolver.Lib.DictionaryReader
             return true;
         }
 
-        private void SplitAndAddWordsToListFromString(string contents)
+        private void InitializeWordListUsingDelimiter(string contents)
         {
             if (string.IsNullOrEmpty(contents) || _delimiter == '\0')
             {
@@ -74,6 +74,7 @@ namespace BoggleSolver.Lib.DictionaryReader
 
             string[] wordsFound = contents.Split(_delimiter);
             _words = new List<string>(wordsFound.Length);
+            _currentPosition = 0;
 
             foreach (var word in wordsFound)
             {
