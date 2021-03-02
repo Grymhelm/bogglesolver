@@ -13,7 +13,7 @@ namespace BoggleSolver.Cmd
             int defaultRows = 4;
             int defaultCols = 4;
 
-            //Note: this was borrowed from https://github.com/dwyl/english-words/blob/master/words_alpha.txt
+            //Note: this was borrowed from https://drive.google.com/open?id=1oGDf1wjWp5RF_X9C7HoedhIWMh5uJs8s
             string defaultFileName = "FullDictionary.txt";
 
             Console.Write("Enter the number of rows: ");
